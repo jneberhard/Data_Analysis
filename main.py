@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 
-
 #this will load that dataset ==  df means data or dataframe == conventional shorthand in python
 df = pd.read_csv("data/loan_approval_dataset.csv")
 df.columns = df.columns.str.strip() #stripping away the extra space before the text in the headers
@@ -19,46 +18,21 @@ numeric_cols = [
     'bank_asset_value'
 ]
 
-#clean the data in each column so it is uniform
-df['income_annum'] = (
-    df['income_annum']
-    .astype(str)
-    .str.replace(',', '', regex=False)
-    .str.strip()
-)
+#clean the data in each numeric column so it is uniform
+for col in numeric_cols:
+    df[col]=(
+        df[col]
+        .astype(str) #convert to string to be able to do the string operations
+        .str.replace(',', '', regex=False)  #remove commas from numbers
+        .str.strip() #remove any extra spaces
+    )
 
-df['loan_term'] = (
-    df['loan_term']
-    .astype(str)
-    .str.replace(',', '', regex=False)
-    .str.strip()
-)
-
-df['fico_score'] = (
-    df['fico_score']
-    .astype(str)
-    .str.replace(',', '', regex=False)
-    .str.strip()
-)
-
-df['loan_amount'] = (
-    df['loan_amount']
-    .astype(str)
-    .str.replace(',', '', regex=False)
-    .str.strip()
-)
-
+#clean the data in the string columns so it is uniform
 df['loan_status'] = (
     df['loan_status']
     .astype(str)
     .str.strip()
     .str.title()
-)
-
-df['no_of_dependents'] = (
-    df['no_of_dependents']
-    .astype(str)
-    .str.strip()
 )
 
 df['self_employed'] = (
@@ -68,36 +42,6 @@ df['self_employed'] = (
     .str.title()
 )
 
-df['residential_assets_value'] = (
-    df['residential_assets_value']
-    .astype(str)
-    .str.strip()
-    .str.title()
-)
-
-df['commercial_assets_value'] = (
-    df['commercial_assets_value']
-    .astype(str)
-    .str.strip()
-    .str.title()
-)
-
-df['luxury_assets_value'] = (
-    df['luxury_assets_value']
-    .astype(str)
-    .str.strip()
-    .str.title()
-)
-
-df['bank_asset_value'] = (
-    df['bank_asset_value']
-    .astype(str)
-    .str.strip()
-    .str.title()
-)
-
-
-
 #convert numeric columns from str values to numbers
 for col in numeric_cols:
     df[col] = pd.to_numeric(df[col], errors='coerce') # use coerce to convert to NaN if string can't be converted to a number
@@ -105,7 +49,8 @@ for col in numeric_cols:
 # Drop rows with missing values in key columns
 df_clean = df.dropna(subset=['income_annum'])
 print()
-#finding the number of loans approved or rejected
+
+#finding the total number of loans approved or rejected
 counts = df_clean['loan_status'].value_counts()
 print("Total loans approved or rejected: ")
 approved = counts.get('Approved', 0)
@@ -188,7 +133,7 @@ df_clean['loan_status'] = df_clean['loan_status'].map({
 'Rejected': 0
 })
 
-#make income and loan ration matter
+#make income and loan ratio matter
 df_clean['loan_to_income_ratio'] = df_clean['loan_amount'] / df_clean['income_annum']
 df_clean['high_loan_risk'] = (df_clean['loan_to_income_ratio'] > 4).astype(int)   # > 4 because that is about what real life situations are
 
@@ -210,10 +155,9 @@ y = df_clean['loan_status'].values   #the target
 means = X.mean(axis=0)   #calculates average for each column.
 standards = X.std(axis=0)  #standard deviation - how spread out the numbers are for each item
 standards[standards == 0] = 1
-X_scaled = (X - means) / standards  #subtracts the mean and divides by the standard deviation - standarization formula
+X_scaled = (X - means) / standards  #subtracts the mean and divides by the standard deviation - standardization formula
 
 X_final = np.c_[np.ones(X_scaled.shape[0]), X_scaled] # adding the bios or intercept column
-
 
 #Make part of the dataset training and testing
 split_index = int(len(X_final) * 0.8)
@@ -233,7 +177,7 @@ def sigmoid(z):
 def train_logistic(X, y, lr=0.1, epochs=1000):
     weights = np.zeros(X.shape[1])
     for _ in range(epochs):
-        preds = sigmoid(np.dot(X, weights))
+        preds = sigmoid(np.dot(X, weights))   #preds is shorthand for predictions - common in machine learning
         error = preds - y
         gradient = np.dot(X.T, error) / len(y)
         weights -= lr * gradient
@@ -261,7 +205,7 @@ while cont:
     loan_to_income_ratio = loan / (income + 1)
     loan_to_asset_ratio = loan / (asset + cash + 1)
 
-    #normalize the input (just like the learning model was normailzed)
+    #normalize the input (just like the learning model was normalized)
     user_raw = np.array([loan_to_income_ratio, fico, years, dependents, log_income, log_assets, loan_to_asset_ratio])   #make sure same order as training model
     user_scaled = (user_raw - means) / standards
     user_final = np.insert(user_scaled, 0, 1)
@@ -277,15 +221,27 @@ while cont:
     monthly_income = income / 12
     income_percentage = (monthly / monthly_income) * 100
 
-    #risk assesment
+    #risk assessment
     if loan_to_income_ratio < 2:
         risk = "LOW"
+        lti_penalty = 1.0
     elif loan_to_income_ratio < 4:
+        risk = "MEDIUM"
+        lti_penalty = 0.9
+    elif loan_to_income_ratio < 6:
         risk = "MODERATE"
-    else:
+        lti_penalty = 0.7
+    elif loan_to_income_ratio < 7:
         risk = "HIGH"
+        lti_penalty = 0.6
+    elif loan_to_income_ratio < 8:
+        risk = "VERY HIGH"
+        lti_penalty = 0.5
+    else:
+        risk = "EXTREMELY HIGH"
+        lti_penalty = 0.3
 
-    adjusted = probability
+    adjusted = probability * lti_penalty
 
     # FICO penalties - will lower the % the lower credit you have
     if fico < 580:
@@ -294,14 +250,10 @@ while cont:
         adjusted *= 0.5   # poor credit
     elif fico < 670:
         adjusted *= 0.75  # fair credit
-
-    # Loan-to-income penalties
-    if loan_to_income_ratio > 8:
-        adjusted *= 0.3
-    elif loan_to_income_ratio > 6:
-        adjusted *= 0.5
-    elif loan_to_income_ratio > 4:
-        adjusted *= 0.7
+    elif fico < 740:
+        adjusted *=0.9    # good credit
+    elif fico < 800:
+        adjusted *=0.95   # very good credit
 
     # Debt-to-income penalty (standard bank threshold is 43%)
     if income_percentage > 43:
@@ -323,4 +275,5 @@ while cont:
         cont = False
 print()
 print("Thank you.  Have a great day!!!!")
+print("GOOD LUCK ON YOUR LOAN APPLICATION!!!!!!")
 print()

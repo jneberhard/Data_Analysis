@@ -7,9 +7,8 @@ This program is an analysis of a dataset with 4,269 loan applications that were 
 I wanted to analyze if being self-employed made a difference and what percentage of loans go to people above median income.
 I also want to be able to put in a few preliminary numbers to see what the chance was of getting a loan.
 
-{Provide a link to your YouTube demonstration.  It should be a 4-5 minute demo of the data set, the questions and answers, the code running and a walkthrough of the code.}
-
-[Software Demo Video](http://youtube.link.goes.here)
+[Software Demo Video](https://youtu.be/3jiAHkseiZ4) -- 5 minutes
+[Long Software Demo Video](https://youtu.be/R2zW5FfjWcw) -- about 14 Minutes
 
 # Data Analysis Results
 
