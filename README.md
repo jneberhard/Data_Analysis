@@ -46,6 +46,8 @@ I wrote a custom regression implementation instead of using a library so I could
 * [Into to Numpy on w3schools](https://www.w3schools.com/python/numpy/default.asp)
 * [Into to Pandas on w3schools](https://www.w3schools.com/python/pandas/default.asp)
 
+* [Data Science Tutorial on w3schools](https://www.w3schools.com/datascience/default.asp)
+
 
 # Future Work
 

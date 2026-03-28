@@ -244,6 +244,7 @@ weights = train_logistic(X_train, y_train)
 cont = True
 
 #keep running the calculations until the user is done running calculations
+print("Let's see the probability of getting a loan!!!!")
 while cont:
     # what is the estimated probability that their loan will be approved? User input
     income = float(input("What is your annual income? "))
