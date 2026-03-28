@@ -1,7 +1,7 @@
 # Overview
 
 This program is an analysis of a dataset with 4,269 loan applications that were either approved or denied. This dataset includes some basic information such as number of dependents, graduated or not, self-employed or not, annual income, loan amount, how long the loan is (in years), fico score, hard assets (residential, commercial, luxury), cash, and approved or not.
-* [Web Site Name](https://www.kaggle.com/datasets/rohitgrewal/loan-approval-dataset) -- Dataset link
+* [Kaggle](https://www.kaggle.com/datasets/rohitgrewal/loan-approval-dataset) -- Dataset link
 
 
 I wanted to analyze if being self-employed made a difference and what percentage of loans go to people above median income.
@@ -38,12 +38,13 @@ I wrote a custom regression implementation instead of using a library so I could
 # Useful Websites
 
 {Make a list of websites that you found helpful in this project}
-* [Web Site Name](https://www.kaggle.com/datasets/rohitgrewal/loan-approval-dataset)
-https://www.kaggle.com/datasets/arbaaztamboli/loan-approval-dataset
-* [Web Site Name](https://www.youtube.com/watch?v=DkjCaAMBGWM ) -- Learning Pandas for Data Analysis? Start Here
-* [Web Site Name](https://www.youtube.com/watch?v=EXIgjIBu4EU ) -- Learn Pandas in 30 Minutes - Python Pandas Tutorial
-* [Web Site Name](https://www.youtube.com/watch?v=2uvysYbKdjM) -- Complete Python Pandas Data Science Tutorial!
-* [Web Site Name](https://scikit-learn.org/stable/) -- Website for machine learning in python for predictive data analysis. Did reading about this library. Did not use because I wanted to write and understand my own code instead of using something already created. But, it is good to know there are libraries out there to lean on if needed.
+* [Kaglee](https://www.kaggle.com/datasets/rohitgrewal/loan-approval-dataset)
+* [Learning Pandas for Data Analysis? Start Here](https://www.youtube.com/watch?v=DkjCaAMBGWM ) -- Learning Pandas for Data Analysis? Start Here
+* [Learn Pandas in 30 Minutes](https://www.youtube.com/watch?v=EXIgjIBu4EU ) -- Learn Pandas in 30 Minutes - Python Pandas Tutorial
+* [Complete Python Pandas Data Science Tutorial!](https://www.youtube.com/watch?v=2uvysYbKdjM) -- Complete Python Pandas Data Science Tutorial!
+* [https://scikit-learn.org/](https://scikit-learn.org/stable/) -- Website for machine learning in python for predictive data analysis. Did reading about this library. Did not use because I wanted to write and understand my own code instead of using something already created. But, it is good to know there are libraries out there to lean on if needed.
+* [Into to Numpy on w3schools](https://www.w3schools.com/python/numpy/default.asp)
+* [Into to Pandas on w3schools](https://www.w3schools.com/python/pandas/default.asp)
 
 
 # Future Work

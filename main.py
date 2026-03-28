@@ -157,12 +157,14 @@ print("QUESTION 2: What percentage of approved loans go to applicants with below
 # find the median income
 median_income = df_clean['income_annum'].median()
 print(f"The median income is ${median_income:.2f}.")
+
 # A = count of approved loans below median income
 count_a = len(df_clean[
     (df_clean['income_annum'] <= median_income) &
     (df_clean['loan_status'] == 'Approved')
 ])
 print(f"Number of loans approved below the Median Income: {count_a}")
+
 # B = count of approved loans above median income
 count_b = len(df_clean[
     (df_clean['income_annum'] > median_income) &
@@ -239,37 +241,9 @@ def train_logistic(X, y, lr=0.1, epochs=1000):
 
 weights = train_logistic(X_train, y_train)
 
-
-'''# --- 5. MODEL EVALUATION ---
-# 1. Get the model's raw scores for every row in the dataset
-z_all = np.dot(X_test, weights)
-# 2. Convert scores to probabilities (0.0 to 1.0)
-all_probs = sigmoid(z_all)
-# 3. Convert probabilities to a hard "Approved (1)" or "Rejected (0)"
-# We use 0.5 as the cutoff point
-predictions = (all_probs >= 0.5).astype(int)
-
-# 4. Calculate Accuracy (Percent of correct guesses)
-accuracy = (predictions == y_test).mean()
-
-# 5. Calculate "True Positives" (Model said Approved, and they WERE Approved)
-tp = np.sum((predictions == 1) & (y_test == 1))
-# 6. Calculate "False Positives" (Model said Approved, but they were actually REJECTED)
-fp = np.sum((predictions == 1) & (y_test == 0))
-# 7. Calculate "False Negatives" (Model said Rejected, but they were actually APPROVED)
-fn = np.sum((predictions == 0) & (y_test == 1))
-
-print("\n" + "="*30)
-print("MODEL PERFORMANCE SUMMARY")
-print("="*30)
-print(f"Overall Accuracy: {accuracy * 100:.2f}%")
-print(f"Total Correct:    {np.sum(predictions == y_test)} / {len(y_test)}")
-print(f"False Approvals:  {fp} (Dangerous for the bank!)")
-print(f"False Rejections: {fn} (Lost business!)")
-
-'''
-
 cont = True
+
+#keep running the calculations until the user is done running calculations
 while cont:
     # what is the estimated probability that their loan will be approved? User input
     income = float(input("What is your annual income? "))
@@ -346,3 +320,6 @@ while cont:
     again = input("Do you want to do another calculation? (Y/N)").strip().lower()
     if again != "y":
         cont = False
+print()
+print("Thank you.  Have a great day!!!!")
+print()
