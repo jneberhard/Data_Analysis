@@ -7,8 +7,8 @@ This program is an analysis of a dataset with 4,269 loan applications that were 
 I wanted to analyze if being self-employed made a difference and what percentage of loans go to people above median income.
 I also want to be able to put in a few preliminary numbers to see what the chance was of getting a loan.
 
-[Software Demo Video](https://youtu.be/3jiAHkseiZ4) -- 5 minutes
-[Long Software Demo Video](https://youtu.be/R2zW5FfjWcw) -- about 14 Minutes
+* [Software Demo Video](https://youtu.be/3jiAHkseiZ4) -- 5 minutes
+* [Long Software Demo Video](https://youtu.be/R2zW5FfjWcw) -- about 14 Minutes
 
 # Data Analysis Results
 
@@ -37,13 +37,13 @@ I wrote a custom regression implementation instead of using a library so I could
 # Useful Websites
 
 {Make a list of websites that you found helpful in this project}
-* [Kaglee](https://www.kaggle.com/datasets/rohitgrewal/loan-approval-dataset)
+* [Kaggle](https://www.kaggle.com/datasets/rohitgrewal/loan-approval-dataset)
 * [Learning Pandas for Data Analysis? Start Here](https://www.youtube.com/watch?v=DkjCaAMBGWM ) -- Learning Pandas for Data Analysis? Start Here
 * [Learn Pandas in 30 Minutes](https://www.youtube.com/watch?v=EXIgjIBu4EU ) -- Learn Pandas in 30 Minutes - Python Pandas Tutorial
 * [Complete Python Pandas Data Science Tutorial!](https://www.youtube.com/watch?v=2uvysYbKdjM) -- Complete Python Pandas Data Science Tutorial!
 * [https://scikit-learn.org/](https://scikit-learn.org/stable/) -- Website for machine learning in python for predictive data analysis. Did reading about this library. Did not use because I wanted to write and understand my own code instead of using something already created. But, it is good to know there are libraries out there to lean on if needed.
-* [Into to Numpy on w3schools](https://www.w3schools.com/python/numpy/default.asp)
-* [Into to Pandas on w3schools](https://www.w3schools.com/python/pandas/default.asp)
+* [Intro to Numpy on w3schools](https://www.w3schools.com/python/numpy/default.asp)
+* [Intro to Pandas on w3schools](https://www.w3schools.com/python/pandas/default.asp)
 
 * [Data Science Tutorial on w3schools](https://www.w3schools.com/datascience/default.asp)
 
