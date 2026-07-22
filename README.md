@@ -1,4 +1,21 @@
-# Overview
+# LoanLens — Loan Approval Data Analysis
+
+## Website
+
+The project now includes a responsive, interactive website that runs entirely in the browser and is ready to deploy on Vercel. The original custom logistic-regression model is embedded in `app.js`, so no Python server or API is required.
+
+To preview it locally, open `index.html` in a browser or serve the folder with any static web server.
+
+To deploy on Vercel:
+
+1. Import this repository into Vercel.
+2. Leave the framework preset as **Other**.
+3. Leave the build command and output directory empty.
+4. Deploy.
+
+The root `vercel.json` adds clean URLs and basic security headers. The original Python analysis remains available in `main.py`.
+
+## Overview
 
 This program is an analysis of a dataset with 4,269 loan applications that were either approved or denied. This dataset includes some basic information such as number of dependents, graduated or not, self-employed or not, annual income, loan amount, how long the loan is (in years), fico score, hard assets (residential, commercial, luxury), cash, and approved or not.
 * [Kaggle](https://www.kaggle.com/datasets/rohitgrewal/loan-approval-dataset) -- Dataset link

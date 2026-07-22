@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="An interactive loan approval data analysis built from 4,269 applications and a custom logistic regression model."
+    />
+    <meta name="theme-color" content="#07111f" />
+    <meta property="og:title" content="LoanLens — Loan Approval Data Analysis" />
+    <meta
+      property="og:description"
+      content="Explore approval trends and test a custom probability model built from 4,269 loan applications."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/app.js" defer></script>
+    <title>LoanLens — Loan Approval Data Analysis</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="LoanLens home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>LoanLens</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#findings">Findings</a>
+        <a href="#estimator">Estimator</a>
+        <a href="#method">Method</a>
+      </nav>
+      <a class="header-link" href="https://youtu.be/3jiAHkseiZ4" target="_blank" rel="noreferrer">
+        Watch demo <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero shell">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> CSE 310 · Data analysis project</p>
+          <h1>What really drives a <em>loan approval?</em></h1>
+          <p class="hero-intro">
+            An interactive analysis of 4,269 loan applications, paired with a custom logistic
+            regression model built from scratch in Python.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#estimator">Try the estimator <span>↓</span></a>
+            <a class="button secondary" href="#findings">Explore the findings</a>
+          </div>
+          <div class="hero-meta" aria-label="Project technologies">
+            <span>Python</span><span>Pandas</span><span>NumPy</span><span>Custom ML</span>
+          </div>
+        </div>
+
+        <div class="hero-dashboard" aria-label="Dataset summary">
+          <div class="dash-topline">
+            <div><span class="status-dot"></span> DATASET OVERVIEW</div>
+            <span>4,269 ROWS</span>
+          </div>
+          <div class="approval-stat">
+            <p>Overall approval rate</p>
+            <strong>62.2<span>%</span></strong>
+            <div class="approval-track"><span></span></div>
+            <div class="track-labels"><span>0%</span><span>100%</span></div>
+          </div>
+          <div class="outcome-grid">
+            <article>
+              <span class="mini-icon approved">↗</span>
+              <div><small>APPROVED</small><b>2,656</b></div>
+              <span class="delta">62.2%</span>
+            </article>
+            <article>
+              <span class="mini-icon rejected">↘</span>
+              <div><small>REJECTED</small><b>1,613</b></div>
+              <span class="delta muted">37.8%</span>
+            </article>
+          </div>
+          <div class="spark-card">
+            <div><span>Approval distribution</span><small>FULL DATASET</small></div>
+            <div class="bars" aria-hidden="true">
+              <i style="--h: 28%"></i><i style="--h: 43%"></i><i style="--h: 35%"></i>
+              <i style="--h: 58%"></i><i style="--h: 50%"></i><i style="--h: 72%"></i>
+              <i style="--h: 64%"></i><i style="--h: 84%"></i><i style="--h: 70%"></i>
+              <i style="--h: 91%"></i><i style="--h: 82%"></i><i style="--h: 100%"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="findings shell" id="findings">
+        <div class="section-heading">
+          <div><p class="eyebrow"><span></span> Key findings</p><h2>Three questions. Clear answers.</h2></div>
+          <p>The dataset reveals which assumptions hold up—and which ones do not.</p>
+        </div>
+        <div class="finding-grid">
+          <article class="finding-card featured">
+            <div class="card-number">01</div>
+            <p class="card-kicker">EMPLOYMENT TYPE</p>
+            <h3>Self-employment makes almost no difference.</h3>
+            <div class="compare-bars">
+              <div><span><b>Self-employed</b><em>62.23%</em></span><i><u style="width:62.23%"></u></i></div>
+              <div><span><b>Salaried</b><em>62.20%</em></span><i><u style="width:62.20%"></u></i></div>
+            </div>
+            <p class="finding-note"><strong>0.03</strong> percentage-point difference</p>
+          </article>
+          <article class="finding-card">
+            <div class="card-number">02</div>
+            <p class="card-kicker">INCOME</p>
+            <h3>Just over half of approved loans went to below-median earners.</h3>
+            <div class="donut-wrap">
+              <div class="donut"><span><b>51.05%</b><small>below median</small></span></div>
+              <div class="legend"><span><i></i> Below $51K</span><span><i></i> Above $51K</span></div>
+            </div>
+          </article>
+          <article class="finding-card">
+            <div class="card-number">03</div>
+            <p class="card-kicker">PREDICTION</p>
+            <h3>Credit score has the strongest relationship with approval.</h3>
+            <div class="signal-list">
+              <span><b>FICO score</b><i><u style="width:92%"></u></i><em>High</em></span>
+              <span><b>Loan / income</b><i><u style="width:56%"></u></i><em>Med</em></span>
+              <span><b>Loan term</b><i><u style="width:32%"></u></i><em>Low</em></span>
+            </div>
+            <p class="finding-note">Based on relative model coefficients</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="estimator-section" id="estimator">
+        <div class="shell">
+          <div class="section-heading estimator-heading">
+            <div><p class="eyebrow"><span></span> Interactive model</p><h2>Estimate an approval probability.</h2></div>
+            <p>Enter a few borrower details to run the same model used in the Python analysis.</p>
+          </div>
+
+          <div class="estimator-panel">
+            <form id="loan-form">
+              <div class="form-heading">
+                <div><span>01</span><h3>Borrower details</h3></div>
+                <button type="reset">Reset values</button>
+              </div>
+              <div class="field-grid">
+                <label>
+                  <span>Annual income <small>USD</small></span>
+                  <div class="input-wrap currency"><input id="income" type="number" min="1000" step="1000" value="75000" required /></div>
+                </label>
+                <label>
+                  <span>Requested loan <small>USD</small></span>
+                  <div class="input-wrap currency"><input id="loan" type="number" min="1000" step="1000" value="180000" required /></div>
+                </label>
+                <label>
+                  <span>FICO score <small>300–850</small></span>
+                  <div class="input-wrap"><input id="fico" type="number" min="300" max="850" value="720" required /></div>
+                </label>
+                <label>
+                  <span>Loan term <small>YEARS</small></span>
+                  <div class="input-wrap"><input id="years" type="number" min="1" max="40" value="15" required /></div>
+                </label>
+                <label>
+                  <span>Dependents</span>
+                  <div class="input-wrap"><input id="dependents" type="number" min="0" max="20" value="2" required /></div>
+                </label>
+                <label>
+                  <span>Total assets <small>USD</small></span>
+                  <div class="input-wrap currency"><input id="assets" type="number" min="0" step="1000" value="250000" required /></div>
+                </label>
+                <label class="full-field">
+                  <span>Cash on hand <small>USD</small></span>
+                  <div class="input-wrap currency"><input id="cash" type="number" min="0" step="1000" value="30000" required /></div>
+                </label>
+              </div>
+              <button class="calculate-button" type="submit">Calculate probability <span>→</span></button>
+            </form>
+
+            <aside class="result-panel" aria-live="polite">
+              <div class="form-heading"><div><span>02</span><h3>Your estimate</h3></div><span class="live-badge">MODEL READY</span></div>
+              <div class="gauge" id="gauge" style="--score: 75">
+                <div class="gauge-center"><small>ESTIMATED</small><strong id="probability">75<span>%</span></strong><em>approval probability</em></div>
+              </div>
+              <div class="risk-line"><span>Risk assessment</span><b id="risk-badge" class="risk-medium"><i></i> MEDIUM</b></div>
+              <div class="result-metrics">
+                <article><small>MONTHLY PRINCIPAL</small><b id="monthly-payment">$1,000</b><span>excludes interest</span></article>
+                <article><small>INCOME SHARE</small><b id="income-share">16.0%</b><span>of monthly income</span></article>
+              </div>
+              <p class="disclaimer"><span>i</span> Educational estimate only. This is not financial advice or a lender decision.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="method shell" id="method">
+        <div class="method-copy">
+          <p class="eyebrow"><span></span> Built from first principles</p>
+          <h2>No black box.<br />Just math, code, and curiosity.</h2>
+          <p>
+            Instead of using a machine-learning library, I implemented logistic regression myself
+            to understand every step—from cleaning the data to standardizing features and updating
+            model weights with gradient descent.
+          </p>
+          <div class="method-links">
+            <a href="https://www.kaggle.com/datasets/rohitgrewal/loan-approval-dataset" target="_blank" rel="noreferrer">View dataset <span>↗</span></a>
+            <a href="https://youtu.be/3jiAHkseiZ4" target="_blank" rel="noreferrer">Watch demo <span>↗</span></a>
+          </div>
+        </div>
+        <ol class="process-list">
+          <li><span>01</span><div><h3>Clean and prepare</h3><p>Normalized labels, converted numeric fields, and handled missing values with Pandas.</p></div></li>
+          <li><span>02</span><div><h3>Engineer features</h3><p>Created loan-to-income, loan-to-asset, and log-transformed financial features.</p></div></li>
+          <li><span>03</span><div><h3>Train the model</h3><p>Used an 80/20 split and 1,000 gradient-descent iterations with a custom sigmoid function.</p></div></li>
+          <li><span>04</span><div><h3>Make it useful</h3><p>Added practical FICO, income-share, and leverage adjustments to the educational estimate.</p></div></li>
+        </ol>
+      </section>
+    </main>
+
+    <footer>
+      <div class="shell">
+        <div><a class="brand" href="#top"><span class="brand-mark"><i></i><i></i><i></i></span><span>LoanLens</span></a><p>A CSE 310 data analysis project.</p></div>
+        <p>Designed for learning. Built for the web.</p>
+      </div>
+    </footer>
+  </body>
+</html>
